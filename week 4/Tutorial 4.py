@@ -246,7 +246,7 @@ for n in range(n):
 #9
 x = int(input("number:"))
 
-if n >= 2:
+if x >= 2:
     for n in range(2, x):
         if x % n == 0:
             print(False)
