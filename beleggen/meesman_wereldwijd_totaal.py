@@ -30,7 +30,7 @@ class meesman_investment():
         self.max_loan_period = 35*12
         self.loan_period = 18
         self.total_period = self.loan_period + self.max_loan_period
-        self.interest = 0.01
+        self.interest = 0.00
         self.transaction_cost = 0.0025
         self.eff_r = [1]
 

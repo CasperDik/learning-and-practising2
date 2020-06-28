@@ -1,6 +1,5 @@
 from meesman_wereldwijd_totaal import meesman_investment
 from matplotlib import pyplot as plt
-import numpy as np
 import bottleneck as bn
 
 class plot():
