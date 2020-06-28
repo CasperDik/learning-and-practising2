@@ -93,8 +93,13 @@ class meesman_investment():
                 r2 = ((self.total_inv[j] - self.annuity - self.total_inv[j-1])/self.total_inv[j-1]) + 1
                 r22 = r2 * self.eff_r[j-2]
                 self.eff_r.append(r22)
+                if r33 == self.eff_r[j-1]:
+                    print("yes")        #todo: eerste 2 kloppen daarna niet meer
+                else:
+                    print("no")
             else:
                 r3 = ((self.total_inv[j] - self.monthly_investment - self.total_inv[j-1])/self.total_inv[j-1]) + 1
                 r33 = r3 * self.eff_r[j-2]
                 self.eff_r.append(r33)
-
+                if r33 == self.eff_r[j-1]:
+                    print("yes")
