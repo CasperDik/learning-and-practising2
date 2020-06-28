@@ -32,6 +32,8 @@ class plot():
             self.effective_returns.append(x)
             plt.plot(self.x_range, self.effective_returns[i])
 
+        plt.ylabel("return")
+        plt.xlabel("months")
         plt.show()
 
 
