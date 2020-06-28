@@ -13,7 +13,7 @@ def monte_carlo(n):
 
     linear = meesman_investment().total_return()[2]
     plt.plot(x_range,linear, "red")
-
     plt.show()
 
 monte_carlo(5)
+meesman_investment().plot_investment()

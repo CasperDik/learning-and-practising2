@@ -27,8 +27,9 @@ class meesman_investment():
 
         #input
         self.monthly_investment = 700
-        self.total_period = 37 * 12
+        self.total_period = 35 * 12
         self.periods = 18    #months of loan
+        self.interest = 0.00
 
         #run
         self.total_return()
@@ -62,7 +63,7 @@ class meesman_investment():
 
             self.total_inv.append(self.begin_inv)
             self.x_range.append(i)
-            linear += 0
+            linear = linear * ((1+self.interest)**(1/12))       #todo: aflossen, dus minder interest
             self.linear.append(linear)
 
         return self.x_range, self.total_inv, self.linear
