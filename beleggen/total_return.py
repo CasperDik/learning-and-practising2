@@ -31,4 +31,4 @@ def effective_returns(n):
     plt.show()
 
 monte_carlo(50,420)
-effective_returns(2)
+effective_returns(1)
