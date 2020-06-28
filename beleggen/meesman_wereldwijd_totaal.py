@@ -26,16 +26,13 @@ class meesman_investment():
         self.mu = self.c_world * self.r_world + self.c_emerging * self.r_emerging + self.c_small * self.r_small
 
         #input
-        self.monthly_investment = 700
+        self.monthly_investment = 750
         self.max_loan_period = 35*12
         self.loan_period = 18
         self.total_period = self.loan_period + self.max_loan_period
-        self.interest = 0.000
+        self.interest = 0.01
         self.transaction_cost = 0.0025
         self.eff_r = [1]
-
-        #run
-        #self.total_return()
 
     def normal_monthly(self):
         self.x = np.random.normal(self.mu/12, self.sigma/12, 1)
