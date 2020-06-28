@@ -20,7 +20,6 @@ def monte_carlo(n,m):
 
 def effective_returns(n):
     x_range = meesman_investment().total_return()[0]
-    x_range.pop(0)
     effective_returns = []
 
     for i in range(n):

@@ -32,9 +32,10 @@ class meesman_investment():
         self.total_period = self.loan_period + self.max_loan_period
         self.interest = 0.000
         self.transaction_cost = 0.0025
+        self.eff_r = [1]
 
         #run
-        self.total_return()
+        #self.total_return()
 
     def normal_monthly(self):
         self.x = np.random.normal(self.mu/12, self.sigma/12, 1)
@@ -68,8 +69,8 @@ class meesman_investment():
             linear = linear * ((1+self.interest)**(1/12))
             self.linear.append(linear)
 
-        self.effective_return()
-        print(self.eff_r)
+        if len(self.eff_r) == 1:
+            self.effective_return()
 
         return self.x_range, self.total_inv, self.linear, self.eff_r
 
@@ -82,17 +83,18 @@ class meesman_investment():
         self.P = self.monthly_investment * self.loan_period
         self.r = self.interest/12 +0.00000000001
         self.annuity = self.P/ ((1-(1+self.r)**(-self.max_loan_period))/self.r)
-        self.eff_r = [1]
 
-        for i in range(2, self.total_period):
-            if i == 2:
-                r0 = ((self.total_inv[i] -self.monthly_investment - self.total_inv[i - 1]) / self.total_inv[i-1]) + 1
-                self.eff_r.append(r0)
-            elif i > self.max_loan_period:
-                r1 = ((self.total_inv[i] - self.annuity - self.total_inv[i - 1]) / self.total_inv[i-1]) + 1
-                r11 = r1 * self.eff_r[i-1-2]
+        for j in range(2, self.total_period):
+            if j == 2:
+                r1 = ((self.total_inv[j] - self.monthly_investment - self.total_inv[j-1])/self.total_inv[j-1]) + 1
+                r11 = r1* self.eff_r[j-2]
                 self.eff_r.append(r11)
-            else:
-                r2 = ((self.total_inv[i] - self.monthly_investment - self.total_inv[i-1])/self.total_inv[i-1]) + 1
-                r22 = r2 * self.eff_r[i-1-2]
+            if j > self.max_loan_period:
+                r2 = ((self.total_inv[j] - self.annuity - self.total_inv[j-1])/self.total_inv[j-1]) + 1
+                r22 = r2 * self.eff_r[j-2]
                 self.eff_r.append(r22)
+            else:
+                r3 = ((self.total_inv[j] - self.monthly_investment - self.total_inv[j-1])/self.total_inv[j-1]) + 1
+                r33 = r3 * self.eff_r[j-2]
+                self.eff_r.append(r33)
+
