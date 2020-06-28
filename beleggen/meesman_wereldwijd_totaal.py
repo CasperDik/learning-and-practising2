@@ -27,9 +27,11 @@ class meesman_investment():
 
         #input
         self.monthly_investment = 700
-        self.total_period = 35 * 12
-        self.periods = 18    #months of loan
-        self.interest = 0.00
+        self.max_loan_period = 35*12
+        self.loan_period = 18
+        self.total_period = self.loan_period + self.max_loan_period
+        self.interest = 0.0081
+        self.transaction_cost = 0.0025
 
         #run
         self.total_return()
@@ -44,9 +46,9 @@ class meesman_investment():
         self.begin_inv = 0
         self.linear = [0]
         linear = 0
-        for i in range(1, self.periods):
+        for i in range(1, self.loan_period):
             r = self.normal_monthly()
-            self.begin_inv = (1+r) * (self.monthly_investment + self.begin_inv)
+            self.begin_inv = (1+r) * ((self.monthly_investment*(1-self.transaction_cost)) + self.begin_inv)
             if i % 12:
                 self.begin_inv * (1-self.TER)
 
@@ -55,7 +57,7 @@ class meesman_investment():
             linear += self.monthly_investment
             self.linear.append(linear)
 
-        for i in range(self.periods, self.total_period):
+        for i in range(self.loan_period, self.total_period):
             r = self.normal_monthly()
             self.begin_inv = (1 + r) * self.begin_inv
             if i % 12:
@@ -66,9 +68,25 @@ class meesman_investment():
             linear = linear * ((1+self.interest)**(1/12))       #todo: aflossen, dus minder interest
             self.linear.append(linear)
 
-        return self.x_range, self.total_inv, self.linear
+        self.effective_return()
+        return self.x_range, self.total_inv, self.linear, self.eff_r
 
     def plot_investment(self):
         plt.plot(self.x_range, self.total_inv)
         plt.plot(self.x_range, self.linear, "red")
         plt.show()
+
+    def effective_return(self):
+        self.P = self.monthly_investment * self.loan_period
+        self.r = self.interest/12
+        self.annuity = self.P/ ((1-(1+self.r)**(-self.max_loan_period))/self.r)
+
+        self.eff_r = []
+        for i in range(1, self.total_period):
+            if i > self.max_loan_period + 1:
+                r1 = (self.total_inv[i] - self.annuity - self.total_inv[i - 1]) / self.total_inv[i]
+                self.eff_r.append(r1)
+            else:
+                r2 = (self.total_inv[i] - self.monthly_investment - self.total_inv[i-1])/self.total_inv[i]
+                self.eff_r.append(r2)
+
