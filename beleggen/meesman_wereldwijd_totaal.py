@@ -89,11 +89,11 @@ class meesman_investment():
                 r1 = ((self.total_inv[j] - self.monthly_investment - self.total_inv[j-1])/self.total_inv[j-1]) + 1
                 r11 = r1* self.eff_r[j-2]
                 self.eff_r.append(r11)
-            if j > self.max_loan_period:
+            if j > self.loan_period:
                 r2 = ((self.total_inv[j] - self.annuity - self.total_inv[j-1])/self.total_inv[j-1]) + 1
                 r22 = r2 * self.eff_r[j-2]
                 self.eff_r.append(r22)
-                if r33 == self.eff_r[j-1]:
+                if r33 == self.eff_r[j-2]:
                     print("yes")        #todo: eerste 2 kloppen daarna niet meer
                 else:
                     print("no")
