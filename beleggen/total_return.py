@@ -20,7 +20,9 @@ class plot():
             plt.plot(self.x_range, self.nested_list[i], linewidth=0.5)
 
         self.linear = self.total_return[2]
-        plt.plot(self.x_range,self.linear, "red")
+        plt.title("Value portfolio & studentloan")
+        plt.plot(self.x_range,self.linear, "red", label="studieschuld" )
+        plt.legend()
         plt.xlabel("months")
         plt.ylabel("in euros")
         plt.show()
@@ -32,10 +34,11 @@ class plot():
         for i in range(self.n):
             x = meesman_investment().total_return()[3]
             self.effective_returns.append(x)
-            mm = bn.move_mean(self.effective_returns[i], window=8, min_count=1)
+            mm = bn.move_mean(self.effective_returns[i], window=6, min_count=1)
             mm_list.append(mm)
             plt.plot(self.x_range, mm_list[i], linewidth=0.5)
 
+        plt.title("6 month moving average returns on investment")
         plt.ylabel("return")
         plt.xlabel("months")
         plt.show()

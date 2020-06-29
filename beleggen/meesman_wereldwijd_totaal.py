@@ -27,11 +27,13 @@ class meesman_investment():
 
         #input
         self.monthly_investment = 750
-        self.max_loan_period = 35*12
+        self.max_payback_period = 35 * 12
         self.loan_period = 18
-        self.total_period = self.loan_period + self.max_loan_period
-        self.interest = 0.00
+        self.total_period = self.loan_period + self.max_payback_period
+        self.interest = 0.005
         self.transaction_cost = 0.0025
+
+        #list
         self.eff_r = [1]
 
     def normal_monthly(self):
@@ -79,7 +81,7 @@ class meesman_investment():
     def effective_return(self):
         self.P = self.monthly_investment * self.loan_period
         self.r = self.interest/12 +0.00000000001
-        self.annuity = self.P/ ((1-(1+self.r)**(-self.max_loan_period))/self.r)
+        self.annuity = self.P/ ((1 - (1+self.r) ** (-self.max_payback_period)) / self.r)
 
         for j in range(2, self.total_period):
             if j == 2:
