@@ -36,7 +36,7 @@ class plot():
             self.effective_returns.append(x)
             mm = bn.move_mean(self.effective_returns[i], window=6, min_count=1)
             mm_list.append(mm)
-            plt.plot(self.x_range, mm_list[i], linewidth=0.5)
+            plt.plot(self.x_range, mm_list[i], linewidth=1)
 
         plt.title("6 month moving average returns on investment")
         plt.ylabel("return")
