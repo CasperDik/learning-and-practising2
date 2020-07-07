@@ -1,4 +1,3 @@
-#https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/
 import pandas as pd
 
 movie_df = pd.read_csv("IMDB-Movie-Data.csv", index_col="Title")
