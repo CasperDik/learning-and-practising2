@@ -1,4 +1,12 @@
-x={1,2,3}
-y={2,3,4}
+class NewList(list):
+    def remove_max(self):
+        self.remove(max(self))
+    def append_sum(self):
+        self.append(sum(self))
 
-print(x.issubset(y))
+x = NewList([1,2,3])
+while max(x) < 10:
+    x.remove_max()
+    x.append_sum()
+
+print(x)
