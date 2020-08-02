@@ -63,16 +63,15 @@ def play_game():
 def play_strategic_game():
     board = create_board()
     board[1,1] = 1
-    for i in range(4):
-        for j in [1,2]:
+    for i in range(5):
+        for j in [2,1]:
             if evaluate(board) != 0:
                 return evaluate(board)
             else:
                 random_place(board, j)
 
-
 results = []
-for i in range(10):
+for i in range(1000):
     x = play_strategic_game()
     results.append(x)
 
