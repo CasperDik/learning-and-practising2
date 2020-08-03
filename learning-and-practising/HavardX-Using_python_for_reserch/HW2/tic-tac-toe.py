@@ -30,7 +30,7 @@ def row_win(board, player):
 
 def col_win(board, player):
     for i in range(3):
-        if np.array_equal(board[:,i], [player, player, player]):
+        if np.array_equal(board[:, i], [player, player, player]):
             return True
     return False
 
@@ -43,7 +43,7 @@ def diag_win(board, player):
 
 def evaluate(board):
     winner = 0
-    for player in [1,2]:
+    for player in [1, 2]:
         if row_win(board, player) or col_win(board, player) or diag_win(board, player) == True:
             winner = player
     if np.all(board != 0) and winner == 0:
@@ -53,7 +53,7 @@ def evaluate(board):
 def play_game():
     board = create_board()
     for i in range(5):
-        for j in [1,2]:
+        for j in [1, 2]:
             if evaluate(board) != 0:
                 return evaluate(board)
             else:
@@ -62,9 +62,9 @@ def play_game():
 
 def play_strategic_game():
     board = create_board()
-    board[1,1] = 1
+    board[1, 1] = 1
     for i in range(5):
-        for j in [2,1]:
+        for j in [2, 1]:
             if evaluate(board) != 0:
                 return evaluate(board)
             else:
