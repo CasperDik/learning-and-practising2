@@ -34,6 +34,6 @@ def read_book(title_path):
         text = text.replace("\n", "").replace("\r", "")
     return text
 
-
 text = read_book("./English/shakespeare/Romeo and Juliet.txt")
-print(len(text))
+
+
