@@ -16,7 +16,7 @@ def count_words(text):
             word_counts[word] = 1
     return word_counts
 
-def counter_words_fast(text):
+def count_words_fast(text):
     text = text.lower()
     skips = [",", ".", ";", ":", "'", '"']
     for ch in skips:
@@ -25,6 +25,15 @@ def counter_words_fast(text):
     word_counts = Counter(text.split(" "))
     return word_counts
 
+def read_book(title_path):
+    """
+    read a book and return it as a string
+    """
+    with open(title_path, "r", encoding="utf8") as current_file:
+        text = current_file.read()
+        text = text.replace("\n", "").replace("\r", "")
+    return text
 
-print(count_words(text1))
-print(counter_words_fast(text1))
+
+text = read_book("./English/shakespeare/Romeo and Juliet.txt")
+print(len(text))
