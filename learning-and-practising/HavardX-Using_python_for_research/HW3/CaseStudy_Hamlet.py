@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from collections import Counter
 
-
 def count_words_fast(text):
     text = text.lower()
     skips = [".", ",", ";", ":", "'", '"', "\n", "!", "?", "(", ")"]
@@ -16,3 +15,18 @@ def word_stats(word_counts):
     num_unique = len(word_counts)
     counts = word_counts.values()
     return (num_unique, counts)
+
+hamlets = pd.read_csv("hamlet.csv", index_col=0)
+
+language, text = hamlets.iloc[0]
+counted_text = count_words_fast(text)
+
+data = pd.DataFrame(columns=("word", "count"))
+keys = list(counted_text.keys())
+values = list(counted_text.values())
+
+for i in range(len(keys)):
+    data.loc[i] = keys[i], values[i]
+
+data = data.sort_values(by=["count"], ascending=False)
+# check if keys and values belong together with counted_text
