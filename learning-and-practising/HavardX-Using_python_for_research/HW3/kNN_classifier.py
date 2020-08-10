@@ -25,6 +25,22 @@ def majority_vote_scipy(votes):
     mode, count = ss.mstats.mode(votes)
     return mode
 
-votes = [1,2,3,1,2,3,1,2,3,3,3,3,1,2]
-winner = majority_vote_scipy(votes)
-print(winner)
+def find_nearest_neighbors(p, points, k=5):
+    """Find the k nearest neighbors of point p and return their indices"""
+    distances = np.zeros(points.shape[0])
+    for i in range(len(distances)):
+        distances[i] = distance(p, points[i])
+    ind = np.argsort(distances)
+    return ind[:k]
+
+def knn_predict(p, points, outcomes,  k=5):
+    ind = find_nearest_neighbors(p, points, k)
+    return majority_vote(outcomes[ind])
+
+points = np.array([[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]])
+p = np.array([1.0, 2.7])
+# outcomes is classes of the points in points
+outcomes = np.array([0,0,0,0,1,1,1,1,1])
+
+x = knn_predict(p, points, outcomes, k=2)
+print(x)
