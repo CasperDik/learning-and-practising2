@@ -1,3 +1,5 @@
+#horrible layout of the codeK
+
 import numpy as np, random, scipy.stats as ss
 import pandas as pd
 
