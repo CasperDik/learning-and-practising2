@@ -3,6 +3,8 @@ import random
 import scipy.stats as ss
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.neighbors import KNeighborsClassifier
 
 def distance(p1, p2):
     return np.sqrt(np.sum(np.power(p2 - p1, 2)))
@@ -75,7 +77,7 @@ def plot_prediction_grid (xx, yy, prediction_grid, filename):
     plt.show()
 
 
-
+#plot synth data:
 (predictors, outcomes) = generate_synth_data()
 k = 5
 filename = "knn_synth_5.pdf"
@@ -84,3 +86,25 @@ h = 0.1
 
 (xx, yy, prediction_grid) = make_prediction_grid(predictors, outcomes, limits , h, k)
 plot_prediction_grid(xx, yy, prediction_grid, filename)
+
+#plot knn - iris data
+iris = datasets.load_iris()
+predictors = iris.data[:, 0:2]
+outcomes = iris.target
+k = 5
+filename = "iris.pdf"
+limits = (4, 8, 1.5, 4.5)
+h = 0.1
+
+(xx, yy, prediction_grid) = make_prediction_grid(predictors, outcomes, limits, h, k)
+plot_prediction_grid(xx, yy, prediction_grid, filename)
+
+#sklearn
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(predictors, outcomes)
+sk_predictions = knn.predict(predictors)
+my_predictions = np.array([knn_predict(p, predictors, outcomes, 5) for p in predictors])
+
+print(np.mean(sk_predictions == my_predictions) * 100)
+print(np.mean(sk_predictions == outcomes) * 100)
+print(np.mean(my_predictions == outcomes) * 100)
