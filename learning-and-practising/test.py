@@ -1,12 +1,7 @@
-class NewList(list):
-    def remove_max(self):
-        self.remove(max(self))
-    def append_sum(self):
-        self.append(sum(self))
+import matplotlib.pyplot as plt
+import numpy as np
 
-x = NewList([1,2,3])
-while max(x) < 10:
-    x.remove_max()
-    x.append_sum()
-
-print(x)
+x = np.logspace(0,1,10)
+y = x**2
+plt.loglog(x,y,"bo-")
+plt.show()
