@@ -26,4 +26,5 @@ basic_net_stats(G2)
 
 plot_degree_distribution(G1)
 plot_degree_distribution(G2)
+
 plt.show()
