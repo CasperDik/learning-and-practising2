@@ -2,7 +2,7 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-N = 1000
+N = 10000
 inleg = 1
 p_succes = 4/37
 multiplier_ifsucces = 9
