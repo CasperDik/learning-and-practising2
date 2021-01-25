@@ -183,3 +183,4 @@ $\lambda$ = {}, $T$ = {}, Nsteps = {}, Nsim = {}"\
     print('Total running time: {:.2f} ms'.format(elapsed_time*1000))
 
 jump_diffusion()
+# copied from https://github.com/federicomariamassari/financial-engineering/blob/master/python-modules/jump_diffusion.py
