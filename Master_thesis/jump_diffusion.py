@@ -185,3 +185,4 @@ $\lambda$ = {}, $T$ = {}, Nsteps = {}, Nsim = {}"\
 jump_diffusion()
 
 # copied from https://github.com/federicomariamassari/financial-engineering/blob/master/python-modules/jump_diffusion.py
+# merton's jump diffusion model
