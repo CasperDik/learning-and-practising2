@@ -1,5 +1,5 @@
-def jump_diffusion(S=1, X=0.5, T=1, mu=0.12, sigma=0.3, Lambda=0.25,
-                   a=0.2, b=0.2, Nsteps=10000, Nsim=1000, alpha=0.05, seed=None):
+def jump_diffusion(S=14, X=0.5, T=1, mu=0.12, sigma=0.3, Lambda=0.25,
+                   a=0.2, b=0.2, Nsteps=1000, Nsim=10000, alpha=0.05, seed=None):
     '''
     Monte Carlo simulation [1] of Merton's Jump Diffusion Model [2].
     The model is specified through the stochastic differential equation (SDE):
