@@ -1,3 +1,5 @@
+#copied from https://github.com/jpcolino/IPython_notebooks/blob/master/Least%20Square%20Monte%20Carlo%20Implementation%20in%20a%20Python%20Class.ipynb
+
 import IPython
 import numpy as np
 import warnings
