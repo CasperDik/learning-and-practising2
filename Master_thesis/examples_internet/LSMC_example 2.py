@@ -4,7 +4,7 @@ import warnings
 warnings.filterwarnings("ignore")
 from sys import version
 
-print(' Least-Squares MC for American Options: Conditions for Replication '.center(85,"-"))
+print(' Least-Squares MC for American Options: Conditions for Replication '.center(85, "-"))
 print('Python version:     ' + version)
 print( 'Numpy version:      ' + np.__version__)
 print( 'IPython version:    ' + IPython.__version__)
@@ -65,11 +65,9 @@ class AmericanOptionsLSMC(object):
         MCprice_matrix = np.zeros((self.M + 1, self.simulations), dtype=np.float64)
         MCprice_matrix[0, :] = self.S0
         for t in range(1, self.M + 1):
-            brownian = np.random.standard_normal(self.simulations / 2)
+            brownian = np.random.standard_normal(self.simulations/2)
             brownian = np.concatenate((brownian, -brownian))
-            MCprice_matrix[t, :] = (MCprice_matrix[t - 1, :]
-                                    * np.exp((self.r - self.sigma ** 2 / 2.) * self.time_unit
-                                             + self.sigma * brownian * np.sqrt(self.time_unit)))
+            MCprice_matrix[t, :] = (MCprice_matrix[t - 1, :]* np.exp((self.r - self.sigma ** 2 / 2.) * self.time_unit + self.sigma * brownian * np.sqrt(self.time_unit)))
         return MCprice_matrix
 
     @property
@@ -176,3 +174,4 @@ class AmericanOptionsLSMC(object):
 
 AmericanPUT = AmericanOptionsLSMC('put', 36., 40., 1., 50, 0.06, 0.06, 0.2, 10000  )
 print('Price: ', AmericanPUT.price)
+
