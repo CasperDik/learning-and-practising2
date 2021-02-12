@@ -88,9 +88,8 @@ for t in np.arange(1, T):
                                            price_sigma * rng.randn(n_sim).T)
     # log(opex) follows mean-reversion opex shouldn't go negative, so
     # we use log opex and take exp to get opex
-    opex[:, t] = np.exp(np.log(opex[:, t - 1]) + opex_k * (np.log(opex_lr) -
-                                                           np.log(opex[:, t - 1])) * 1 + opex_sigma * rng.randn(
-        n_sim).T)
+    opex[:, t] = np.exp(np.log(opex[:, t - 1]) + opex_k * (np.log(opex_lr) - np.log(opex[:, t - 1])) * 1 + opex_sigma * rng.randn(n_sim).T)
+
 
 # calculate revenues
 rev_gross = price * quant
