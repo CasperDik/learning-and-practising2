@@ -12,7 +12,6 @@ print( 'Numpy version:      ' + np.__version__)
 print( 'IPython version:    ' + IPython.__version__)
 print( '-'*85)
 
-
 class AmericanOptionsLSMC(object):
     """ Class for American options pricing using Longstaff-Schwartz (2001):
     "Valuing American Options by Simulation: A Simple Least-Squares Approach."
