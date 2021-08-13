@@ -1,29 +1,25 @@
 import fitparse
 import pandas as pd
 
-time = []
-speed = []
-cadence = []
-heart_rate = []
-temperature = []
-distance = []
-altitude = []
-stance_time = []
-stance_time_balance = []        # on left foot
-step_length = []
-vertical_oscillation = []
-vertical_ratio = []
 
-inputs = ["time", "speed", "cadence", "heart_rate", "temperature", "distance", "altitude", "stance_time", "stance_time_balance", "step_length", "vertical_oscillation", "vertical_ratio"]
-df = pd.DataFrame(columns=inputs)
+def fit_to_csv(file_location, output_location, filename):
+    time = []
+    speed = []
+    cadence = []
+    heart_rate = []
+    temperature = []
+    distance = []
+    altitude = []
+    stance_time = []
+    stance_time_balance = []        # on left foot
+    step_length = []
+    vertical_oscillation = []
+    vertical_ratio = []
 
-# Load the FIT file
-file_type = ".fit"
-file_location = "data/fit files/"
-file_name = "my_activity"
-index = [9]
-for i in index:
-    fitfile = fitparse.FitFile(file_location + file_name + str(i) + file_type)
+    inputs = ["time", "speed", "cadence", "heart_rate", "temperature", "distance", "altitude", "stance_time", "stance_time_balance", "step_length", "vertical_oscillation", "vertical_ratio"]
+    df = pd.DataFrame(columns=inputs)
+
+    fitfile = fitparse.FitFile(file_location)
 
     # Iterate over all messages of type "record"
     # (other types include "device_info", "file_creator", "event", etc)
@@ -77,7 +73,7 @@ for i in index:
         df["vertical_oscillation"] = vertical_oscillation
         df["vertical_ratio"] = vertical_ratio
 
-    file_name = "running_raw_data"
     file_type = ".csv"
-    file_location = "data/csv files/"
-    df.to_csv(file_location + file_name + str(i) + file_type)
+    df.to_csv(output_location + "/" + filename + file_type)
+
+
