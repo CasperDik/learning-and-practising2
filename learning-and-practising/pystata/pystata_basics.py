@@ -13,8 +13,8 @@ data = pd.read_csv("../running/data/csv files/aggregated_running_data.csv")
 stata.pdataframe_to_data(data, True)
 
 # run some stata commands
-stata.run('''reg speed heart_rate''', echo=True)
-stata.run("reg speed heart_rate")   # same as above
+stata.run('''reg speed heart_rate''')    # ''' for multiple lines in stata
+stata.run("reg speed heart_rate")   # "" works only for single lines
 stata.run("reg speed heart_rate", quietly=True)     # doesn't display results in console
 
 # find more commands here:
@@ -41,8 +41,8 @@ e = e["e(N)"]
 s = stata.get_sreturn()
 
 # create graphs etc --> works the same as in stata
-# todo: find out how to show this and store it
-stata.run("twoway(scatter speed heart_rate if timersec < 7*60 & speed > 2.5)")
+stata.run("twoway(scatter speed heart_rate if timersec < 7*60 & speed > 2.5)", quietly=True)
+stata.run("graph export test.svg, replace")
 
 
 
