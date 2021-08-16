@@ -6,6 +6,20 @@ from sys import exit
 import fitparse
 import pandas as pd
 
+"""
+notes:
+coverted the .py file to .exe by:
+-adding python to path
+-pip install pyinstaller & some packages (in this case pandas and fitparse) --> PIP install in command prompt!!
+-code to generate .exe:
+cd C:\Users\Casper Dik\PycharmProjects\learning-and-practising\running
+pyinstaller --onefile --noconsole fit2csv_gui.py
+
+https://datatofish.com/executable-pyinstaller/
+"""
+
+
+
 class fit2csv(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master=master)
@@ -149,3 +163,5 @@ root = Tk()
 x = fit2csv(root)
 
 root.mainloop()
+
+
