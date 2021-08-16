@@ -15,7 +15,7 @@ class fit2csv(Frame):
         frame1.pack(fill="x")
 
         self.L_file_button = Label(frame1, text="select file", width=12, anchor="w")
-        self.file_button = Button(frame1, command=self.select_file)
+        self.file_button = Button(frame1, text="select", command=self.select_file)
 
         self.L_file_button.pack(side=LEFT, padx=5, pady=5)
         self.file_button.pack(fill=X, padx=5, expand=True)
@@ -25,7 +25,7 @@ class fit2csv(Frame):
         frame2.pack(fill="x")
 
         self.L_output_location = Label(frame2, text="output location", width=12, anchor="w")
-        self.output_location = Button(frame2, command=self.output_location)
+        self.output_location = Button(frame2, text="select", command=self.output_location)
 
         self.L_output_location.pack(side=LEFT, padx=5, pady=5)
         self.output_location.pack(fill=X, padx=5, expand=True)
@@ -34,11 +34,11 @@ class fit2csv(Frame):
         frame3 = Frame(self)
         frame3.pack(fill="x")
 
-        self.L_entry = Label(frame3, text="New filename")
+        self.L_entry = Label(frame3, text="new filename", width=12, anchor="w")
         self.filename = Entry(frame3)
 
         self.L_entry.pack(side=LEFT, padx=5, pady=5)
-        self.filename.pack(fill=X, padx=10, expand=True)
+        self.filename.pack(fill=X, padx=5, expand=True)
 
         # frame 4
         frame4 = Frame(self)
@@ -46,7 +46,7 @@ class fit2csv(Frame):
 
         self.convert_button = Button(frame4, text="convert", command=self.convert_file)
 
-        self.convert_button.pack(padx=20, fill="x")
+        self.convert_button.pack(padx=70, fill="x")
 
 
     def select_file(self):
