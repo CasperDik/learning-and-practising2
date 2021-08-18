@@ -59,14 +59,14 @@ for action in ['action', 'action1', 'action2']:
     df_dataset[key_start_distance] = df_dataset.apply(lambda s: distance.euclidean((s[key_start_x], s[key_start_y]), goal), axis=1)
 
 # change the dataset(X and y) and drop irrelevant columns
-columns_features = ['action_start_x', 'action_start_y', 'action_body_part_id', 'action_start_distance', 'action1_start_distance', 'action2_start_distance']
+columns_features = ['action_start_x', 'action_start_y', 'action_body_part_id', 'action_start_distance', 'action1_start_distance', 'action2_start_distance', "action1_type_id", "action_seconds", "action_period", "action1_result", "action2_type_id", "action2_result",]
 column_target = 'action_result'
 
 X = df_dataset[columns_features]
 y = df_dataset[column_target]
 
 # split dataset in train and test (90/10)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.90)
 
 # model 1
 classifier = XGBClassifier(objective='binary:logistic', max_depth=5, n_estimators=100)
@@ -78,7 +78,7 @@ classifier.fit(X_train, y_train)
 y_pred = classifier.predict_proba(X_test)
 # actual/observed total attempts
 y_total = y_train.count()
-# predicted total goals
+# observed total goals
 y_positive = y_train.sum()
 
 print('The training set contains {} examples of which {} are positives.'.format(y_total, y_positive))
@@ -96,7 +96,7 @@ auc_pr = average_precision_score(y_test, y_pred[:, 1])
 print('Our classifier obtains an AUC-PR of {}.'.format(auc_pr))
 
 # generate ROC curve
-plot_roc(y_test, y_pred)
+plot_roc(y_test, y_pred, plot_micro=False, plot_macro=False)
 plt.show()
 # Plot AUC-PR curve
 plot_precision_recall(y_test, y_pred)
