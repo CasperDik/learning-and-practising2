@@ -18,5 +18,5 @@ from sklearn.model_selection import train_test_split
 # Import SciPy function
 from scipy.spatial import distance
 
-path_dataset = os.path.abspath(os.path.join(os.sep, os.getcwd(), os.pardir, 'data', 'scisports-shots.parquet'))
+path_dataset = os.path.abspath(os.path.join(os.sep, os.getcwd(), os.pardir, 'xG', 'scisports-shots.parquet'))
 df_dataset = pd.read_parquet(path_dataset)

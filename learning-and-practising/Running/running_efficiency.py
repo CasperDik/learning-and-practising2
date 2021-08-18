@@ -1,4 +1,4 @@
-# question: am i running more efficient when going faster?
+# question: am i Running more efficient when going faster?
 # hypothesis:  yes. why: it feels like that
 
 import pandas as pd
@@ -9,7 +9,7 @@ df = df.drop(df[df["timer(sec)"] < 60*3].index)
 df = df.drop(df[df["speed"] < 1.5].index)
 
 
-from pystata import stata
+from PyStata import stata
 stata.pdataframe_to_data(df, True)
 stata.run(""" gen eff = speed/heart_rate
 twoway(scatter eff speed)

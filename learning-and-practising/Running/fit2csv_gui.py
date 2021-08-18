@@ -10,7 +10,7 @@ import pandas as pd
 notes:
 coverted the .py file to .exe by:
 -adding python to path in windows
--pip install pyinstaller & some packages (in this case pandas and fitparse) --> PIP install in command prompt!!
+-pip install pyinstaller & some packages (in this case Pandas and fitparse) --> PIP install in command prompt!!
 -code to generate .exe:
 cd C:\Users\Casper Dik\PycharmProjects\learning-and-practising\running
 pyinstaller --onefile --noconsole fit2csv_gui.py

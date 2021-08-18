@@ -3,11 +3,11 @@ import stata_setup
 stata_setup.config("C:/Program Files/Stata17", "se")
 
 # its red underlined but works somehow
-from pystata import stata
+from PyStata import stata
 
 # import data as dataframe
 import pandas as pd
-data = pd.read_csv("../running/data/csv files/aggregated_running_data.csv")
+data = pd.read_csv("../Running/data/csv files/aggregated_running_data.csv")
 
 # load dataframe to stata
 stata.pdataframe_to_data(data, True)
