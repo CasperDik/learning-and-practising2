@@ -84,7 +84,6 @@ y_positive = y_train.sum()
 print('The training set contains {} examples of which {} are positives.'.format(y_total, y_positive))
 
 # AUC-ROC score
-# todo: learn what all these outcomes mean and how to interpret
 auc_roc = roc_auc_score(y_test, y_pred[:, 1])
 print('Our classifier obtains an AUC-ROC of {}.'.format(auc_roc))
 
