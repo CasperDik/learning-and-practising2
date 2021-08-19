@@ -273,6 +273,7 @@ def lightGBM(X_train, X_test, y_train, y_test):
     from scikitplot.metrics import plot_calibration_curve
     from scikitplot.metrics import plot_precision_recall
 
+    # todo: learn how to build lightGBM model
     # https://www.kaggle.com/ezietsman/simple-python-lightgbm-example
     pass
 
