@@ -1,14 +1,16 @@
 # https://www.kaggle.com/mtszkw/xgboost-for-stock-trend-prices-prediction
+# see comment of author --> test data should include all time high of a time series
 # todo: make own model, different predictors
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 import xgboost as xgb
 from xgboost import plot_importance
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import GridSearchCV
 
-df = pd.read_csv("VTI_daily_5y.csv")
+df = pd.read_csv("Unilever_5yhistorical.csv")
 df_close = df[['Date', 'Close']].copy()
 df_close = df_close.set_index('Date')
 
@@ -47,10 +49,16 @@ df['Close'] = df['Close'].shift(-1)
 df = df.iloc[33:]   # Because of moving averages and MACD line
 df = df[:-1]      # Because of shifting close price
 
-# split this dataset into 60% train, 20% validation, and 20% test.
-train_df = df[:int(df["Date"].count() * 0.6)]
-valid_df = df[int(df["Date"].count() * 0.6):int(df["Date"].count() * 0.8)]
-test_df = df[int(df["Date"].count() * 0.8):]
+# split this dataset into 60% train, 20% validation, and 20% test
+df.index = range(len(df))
+test_size = 0.15
+valid_size = 0.15
+test_split_idx = int(df.shape[0] * (1-test_size))
+valid_split_idx = int(df.shape[0] * (1-(valid_size+test_size)))
+
+train_df = df.loc[:valid_split_idx].copy()
+valid_df = df.loc[valid_split_idx+1:test_split_idx].copy()
+test_df = df.loc[test_split_idx+1:].copy()
 
 # drop unnecessary columns
 drop_columns = ["Date", "Volume", "Open", "Low", "High", "Adj Close"]
@@ -77,6 +85,7 @@ parameters = {
     'gamma': [0.001, 0.005, 0.01, 0.02],
     'random_state': [42]
 }
+
 eval_set = [(X_train, y_train), (X_valid, y_valid)]
 model = xgb.XGBRegressor(eval_set=eval_set, objective='reg:squarederror', verbose=False)
 clf = GridSearchCV(model, parameters)
@@ -91,17 +100,20 @@ plot_importance(model)
 plt.show()
 
 y_pred = model.predict(X_test)
+print(f'y_true = {np.array(y_test)[:5]}')
+print(f'y_pred = {y_pred[:5]}')
+
 print(f'mean_squared_error = {mean_squared_error(y_test, y_pred)}')
 
-predicted_prices = df[int(df["Date"].count() * 0.8):].copy()
-predicted_prices['Close'] = y_pred
+predicted_prices = df.loc[test_split_idx+1:].copy()
+predicted_prices["Close"] = y_pred
 
-plt.plot(df["Date"][int(df["Date"].count() * 0.8):], predicted_prices["Close"], label="Prediction", c="red")
+plt.plot(predicted_prices["Date"], predicted_prices["Close"], label="Prediction", c="red")
 plt.plot(df["Date"], df["Close"], label="actual", c="blue")
 plt.legend()
 plt.show()
 
-plt.plot(df["Date"][int(df["Date"].count() * 0.8):], predicted_prices["Close"], label="Prediction", c="red")
-plt.plot(df["Date"][int(df["Date"].count() * 0.8):], y_test, label="actual", c="blue")
+plt.plot(predicted_prices["Date"], predicted_prices["Close"], label="Prediction", c="red")
+plt.plot(predicted_prices["Date"], y_test, label="actual", c="blue")
 plt.legend()
 plt.show()
