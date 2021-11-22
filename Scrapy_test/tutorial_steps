@@ -1,0 +1,20 @@
+make sure scrapy is installed
+
+create:
+-use the terminal and run: "scrapy startproject <projectname>
+-create a new python file in the spiders folder
+-design your python file with the correct layout
+
+run:
+-go to terminal and change directory with "cd <projectname>"
+-run in terminal: "scrapy crawl <name of crawler as in python file>"
+
+css tags:
+-selector gadget plugin
+-click on what you want and then click again on the other items to deselect them
+- . for classes
+
+xpath:
+-start with //
+-example: response.xpath("//span[@class='text']/text()").extract()
+-pay attention to double and single quotes --> online when quotation in quotation
