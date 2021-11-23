@@ -21,3 +21,10 @@ xpath:
 -start with //
 -example: response.xpath("//span[@class='text']/text()").extract()
 -pay attention to double and single quotes --> online when quotation in quotation
+
+store data in containers in python file "items"
+--> in the class define the variables to be stored with e.g. author = scrapy.Field()
+--> yield the items in parse
+
+--> to store data in e.g. csv, json oid --> use the command "scrapy crawl <projectname> -o <filename>.<filetype>"
+e.g. "scrapy crawl quotes -o items.csv"
