@@ -1,5 +1,6 @@
 import scrapy
 from cmc.cmc.items import CmcItem
+from scrapy.crawler import CrawlerProcess
 
 class QuoteSpider(scrapy.Spider):
     name = "crypto"
@@ -25,4 +26,12 @@ class QuoteSpider(scrapy.Spider):
             items["circulating_supply"] = circulating_supply[count]
             count += 1
             yield items
+
+process = CrawlerProcess(settings={
+    'FEED_FORMAT': 'csv',
+    'FEED_URI': 'file:///tmp/export.csv'
+})
+
+process.crawl(QuoteSpider)
+process.start()
 
