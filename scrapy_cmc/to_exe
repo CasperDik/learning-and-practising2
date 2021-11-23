@@ -1,0 +1,8 @@
+to convert this simple scraper to .exe file:
+
+use PyInstaller
+
+in terminal:
+-pip install pyinstaller
+-cd cmc/cmc/spiders
+-pyinstaller --onefile cmc_scraper.py
