@@ -2,7 +2,12 @@ to convert this simple scraper to .exe file:
 
 use PyInstaller
 
-in terminal:
+in powershell:
 -pip install pyinstaller
--cd cmc/cmc/spiders
--pyinstaller --onefile cmc_scraper.py
+-cd "C:\Users\Casper Dik\PycharmProjects\scrapy_cmc\cmc\cmc\spiders"
+-pyinstaller --onefile main.py
+
+
+note: didnt work because antivirus blocks it
+
+and some permission error

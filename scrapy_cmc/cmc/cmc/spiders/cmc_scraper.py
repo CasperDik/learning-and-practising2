@@ -1,5 +1,5 @@
 import scrapy
-from ..items import CmcItem
+from cmc.cmc.items import CmcItem
 
 class QuoteSpider(scrapy.Spider):
     name = "crypto"
