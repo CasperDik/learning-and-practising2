@@ -28,5 +28,5 @@ process.crawl(QuoteSpider)
 process.start()
 
 
-# todo: make gui
-# todo: in gui ask for input --> filename, directory to store
+# todo: make gui & ask for input --> filename, directory to store
+# todo: or just make messagebox with where the file is stored
