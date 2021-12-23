@@ -26,4 +26,5 @@ class Network(object):
             return a
 
 
+
 net = Network([2, 3, 1])
