@@ -42,8 +42,7 @@ class Network(object):
             for mini_batch in mini_batches:
                 self.update_mini_batch(mini_batch, eta)
             if test_data:
-                print("Epoch {0}: {1} / {2}".format(
-                    j, self.evaluate(test_data), n_test))
+                print("Epoch {0}: {1} / {2}".format(j, self.evaluate(test_data), n_test))
             else:
                 print("Epoch {0} complete".format(j))
 
@@ -72,8 +71,10 @@ class Network(object):
         ``nabla_w`` are layer-by-layer lists of numpy arrays, similar
         to ``self.biases`` and ``self.weights``."""
 
+        # array with only zeros in same shape as biases/weights
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
+
         # feedforward
         activation = x
         activations = [x]  # list to store all the activations, layer by layer
